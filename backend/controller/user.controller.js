@@ -18,7 +18,7 @@ const get = async (req, res) => {
 
     res.status(201).json({status: 'passed', user});
   } catch (e) {
-    return res.status(500).json({status: false, message: e.message});
+    return res.status(500).json({status: "failed", message: e.message});
   }
 };
 

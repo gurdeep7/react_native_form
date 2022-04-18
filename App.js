@@ -59,7 +59,7 @@ const App = () => {
     const data = JSON.stringify(formData)
     var config = {
       method: 'post',
-      url: 'http://10.0.2.2/register',
+      url: "http://192.168.1.42:2345/register", //Add your local ip address
       headers: { 
         'Content-Type': 'application/json'
       },
@@ -68,10 +68,15 @@ const App = () => {
     
     axios(config)
     .then(function (response) {
-      Alert.alert("work");
+      if(response.data.status == "passed"){
+        Alert.alert("User Registerd successfully")
+      }else{
+        Alert.alert(JSON.stringify(response))
+      }
+      ;
     })
     .catch(function (error) {
-      Alert.alert(JSON.stringify(error))
+      Alert.alert(JSON.stringify("Enter valid data, email should be unique"))
     });
   }, []);
   const onChange = useCallback(
